@@ -15,6 +15,7 @@ void mergeThread(vector<Mat> &imgs)
 
     qDebug("Hello from mergeThread!");
 
+//    Mat birdsEyeView(640, 480, CV_8UC3, Scalar(200));
     Mat birdsEyeView;
 
     birdsEyeView = imgs[0];
@@ -22,8 +23,10 @@ void mergeThread(vector<Mat> &imgs)
 
 //    imwrite("/opt/images/birdsEyeView.png", birdsEyeView);
 
+    qDebug() << "birdsEyeView.step" << birdsEyeView.step;
+
     // Convert Mat to QImage
-    QImage finalImg(birdsEyeView.data, birdsEyeView.cols, birdsEyeView.rows, QImage::Format_RGB888);
+    QImage finalImg(birdsEyeView.data, birdsEyeView.cols, birdsEyeView.rows, birdsEyeView.step, QImage::Format_RGB888);
 
     // Display stitched image
     ImagePainter *painter = ImagePainter::getSingleton();
@@ -53,10 +56,6 @@ Mat cameraThread(int &camNo, Mat &img)
 
 //    unsigned long sleep = 1000 * camNo;
 //    QThread::msleep(sleep);
-
-    Mat testH = warpParamsCam1[2];
-
-    cout << "topViewH cam 1:" << testH << endl;
 
 
     qDebug() << "Goodbye from cameraThread " << camNo;

@@ -19,8 +19,10 @@ public:
 public slots:
 
     void setImage(QImage& image);
+    void onTriggerUpdate();
 
 signals:
+    void triggerUpdate();
 
 protected:
     QSGNode *updatePaintNode(QSGNode *, UpdatePaintNodeData *);

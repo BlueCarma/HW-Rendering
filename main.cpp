@@ -115,45 +115,45 @@ int main(int argc, char *argv[])
     // ----------------------------------------------------------
 
 
-//    QtConcurrent::run(mainThread, captures);
+    QtConcurrent::run(mainThread, captures);
 
 
 
-    // ------------------ LOOP AT TIME INTERVAL -----------------
-    Mat frame;
-    QFuture<Mat> future;
-    vector<QFuture<Mat>> futures;
-    vector<Mat> topViewImgs;
+//    // ------------------ LOOP AT TIME INTERVAL -----------------
+//    Mat frame;
+//    QFuture<Mat> future;
+//    vector<QFuture<Mat>> futures;
+//    vector<Mat> topViewImgs;
 
-//    timeLoop{
-        // ----------------- RUN CAMERA THREADS -----------------
-        for(int i = 0; i <= 3; i++){
-            captures[i] >> frame;
-            cvtColor(frame, frame, COLOR_BGR2RGB);
+////    timeLoop{
+//        // ----------------- RUN CAMERA THREADS -----------------
+//        for(int i = 0; i <= 3; i++){
+//            captures[i] >> frame;
+//            cvtColor(frame, frame, COLOR_BGR2RGB);
 
-            future = QtConcurrent::run(cameraThread, i, frame);
-            futures.push_back(future);
-        }
-        // ------------------------------------------------------
-
-
-        // ----- RECEIVE TOPVIEW IMAGES FROM CAMERA THREADS -----
-        for(int i = 0; i <= 3; i++){
-            futures[i].waitForFinished();
-            topViewImgs.push_back(futures[i].result());
-        }
-        // ------------------------------------------------------
+//            future = QtConcurrent::run(cameraThread, i, frame);
+//            futures.push_back(future);
+//        }
+//        // ------------------------------------------------------
 
 
+//        // ----- RECEIVE TOPVIEW IMAGES FROM CAMERA THREADS -----
+//        for(int i = 0; i <= 3; i++){
+//            futures[i].waitForFinished();
+//            topViewImgs.push_back(futures[i].result());
+//        }
+//        // ------------------------------------------------------
 
-        // ----------------- CREATE BIRDS EYE VIEW ------------------
-        Mat birdsEyeView;
-        QFuture<void> futureMerge = QtConcurrent::run(mergeThread, topViewImgs);
-        futureMerge.waitForFinished();
-//        birdsEyeView = futureMerge.result();
-        // ----------------------------------------------------------
-//    }
-    // ----------------------------------------------------------
+
+
+//        // ----------------- CREATE BIRDS EYE VIEW ------------------
+//        Mat birdsEyeView;
+//        QFuture<void> futureMerge = QtConcurrent::run(mergeThread, topViewImgs);
+//        futureMerge.waitForFinished();
+////        birdsEyeView = futureMerge.result();
+//        // ----------------------------------------------------------
+////    }
+//    // ----------------------------------------------------------
 
 
 
@@ -180,6 +180,6 @@ int main(int argc, char *argv[])
 
 //    } );
 
-
+    qDebug("Start mainLoop");
     return app.exec();
 }
