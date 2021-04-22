@@ -11,7 +11,7 @@ Window {
 
     ImagePainter {
         anchors.centerIn: parent
-        width: 640
+        width: 800
         height: 480
     }
 }

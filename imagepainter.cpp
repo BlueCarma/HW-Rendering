@@ -43,14 +43,14 @@ void ImagePainter::setImage(QImage& image)
 
 void ImagePainter::onTriggerUpdate()
 {
-    qDebug() << Q_FUNC_INFO;
+//    qDebug() << Q_FUNC_INFO;
 
     update();
 }
 
 QSGNode *ImagePainter::updatePaintNode(QSGNode *oldNode, QQuickItem::UpdatePaintNodeData *)
 {
-    qDebug() << Q_FUNC_INFO;
+//    qDebug() << Q_FUNC_INFO;
     auto node = dynamic_cast<QSGSimpleTextureNode *>(oldNode);
 
     if (!node) {
