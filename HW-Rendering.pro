@@ -34,4 +34,9 @@ HEADERS += \
     mergeParams.h \
     threads.h
 
-DISTFILES +=
+DISTFILES += \
+    stitchParams.xml \
+    warpParams/warpParamsCam1.xml \
+    warpParams/warpParamsCam2.xml \
+    warpParams/warpParamsCam3.xml \
+    warpParams/warpParamsCam4.xml

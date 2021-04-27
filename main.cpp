@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     Mat mask1, mask2, mask3, mask4;
     Mat stitchH1, stitchH2, stitchH3, stitchH4;
 
-    FileStorage paramsCam1("/opt/warpParams/warpParamsCam1.xml", FileStorage::READ);
+    FileStorage paramsCam1("/warpParams/warpParamsCam1.xml", FileStorage::READ);
     paramsCam1["map1"] >> map1Cam1;
     paramsCam1["map2"] >> map2Cam1;
     paramsCam1["topViewH"] >> topViewHCam1;
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     map2.push_back(map2Cam1);
     topViewH.push_back(topViewHCam1);
 
-    FileStorage paramsCam2("/opt/warpParams/warpParamsCam2.xml", FileStorage::READ);
+    FileStorage paramsCam2("/warpParams/warpParamsCam2.xml", FileStorage::READ);
     paramsCam2["map1"] >> map1Cam2;
     paramsCam2["map2"] >> map2Cam2;
     paramsCam2["topViewH"] >> topViewHCam2;
@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     map2.push_back(map2Cam2);
     topViewH.push_back(topViewHCam2);
 
-    FileStorage paramsCam3("/opt/warpParams/warpParamsCam3.xml", FileStorage::READ);
+    FileStorage paramsCam3("/warpParams/warpParamsCam3.xml", FileStorage::READ);
     paramsCam3["map1"] >> map1Cam3;
     paramsCam3["map2"] >> map2Cam3;
     paramsCam3["topViewH"] >> topViewHCam3;
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
     map2.push_back(map2Cam3);
     topViewH.push_back(topViewHCam3);
 
-    FileStorage paramsCam4("/opt/warpParams/warpParamsCam4.xml", FileStorage::READ);
+    FileStorage paramsCam4("/warpParams/warpParamsCam4.xml", FileStorage::READ);
     paramsCam4["map1"] >> map1Cam4;
     paramsCam4["map2"] >> map2Cam4;
     paramsCam4["topViewH"] >> topViewHCam4;
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     map2.push_back(map2Cam4);
     topViewH.push_back(topViewHCam4);
 
-    FileStorage stitchParams("/opt/stitchParams/stitchParams3.xml", FileStorage::READ);
+    FileStorage stitchParams("/stitchParams.xml", FileStorage::READ);
     stitchParams["stitchH1"] >> stitchH1;
     stitchParams["stitchH2"] >> stitchH2;
     stitchParams["stitchH3"] >> stitchH3;

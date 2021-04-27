@@ -51,5 +51,4 @@ void humanDetectionHOG(Mat &img)
         r.height = cvRound(r.height*0.9);
         rectangle(img, r.tl(), r.br(), cv::Scalar(0,255,0), 2);
     }
-
 }
