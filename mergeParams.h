@@ -14,5 +14,7 @@ QT_END_NAMESPACE
 
 extern vector<Mat> mask;
 extern vector<Mat> stitchH;
+extern Mat rotateH;
+
 
 #endif // MERGEPARAMS_H
