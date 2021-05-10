@@ -18,7 +18,7 @@ void mergeThread(vector<Mat> &imgs)
 //    TickMeter tmMerge;
 //    tmMerge.start();
 
-    Mat img1 = imgs[0], img2 = imgs[1], img3 = imgs[2], img4 = imgs[3];
+    UMat img1 = imgs[0], img2 = imgs[1], img3 = imgs[2], img4 = imgs[3];
     Mat birdsEyeView;
 
     // Stitch images(x4)
