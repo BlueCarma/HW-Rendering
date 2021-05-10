@@ -13,13 +13,13 @@
 
 
 
-void mergeThread(vector<Mat> &imgs)
+void mergeThread(vector<UMat> &imgs)
 {
 //    TickMeter tmMerge;
 //    tmMerge.start();
 
     UMat img1 = imgs[0], img2 = imgs[1], img3 = imgs[2], img4 = imgs[3];
-    Mat birdsEyeView;
+    UMat birdsEyeView;
 
     // Stitch images(x4)
     add(img1, img2, birdsEyeView);
@@ -33,8 +33,10 @@ void mergeThread(vector<Mat> &imgs)
     // Rotate image to fit the screen
     rotate(birdsEyeView, birdsEyeView, cv::ROTATE_90_CLOCKWISE);
 
+    Mat mat = birdsEyeView.getMat(ACCESS_RW);
+
     // Convert Mat to QImage
-    QImage finalImg(birdsEyeView.data, birdsEyeView.cols, birdsEyeView.rows, birdsEyeView.step, QImage::Format_RGB888);
+    QImage finalImg(mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
 
     // Display stitched image
     ImagePainter *painter = ImagePainter::getSingleton();
@@ -51,12 +53,12 @@ void mergeThread(vector<Mat> &imgs)
 
 
 
-Mat cameraThread(int &camNo, VideoCapture &capture)
+UMat cameraThread(int &camNo, VideoCapture &capture)
 {
 //    TickMeter tmCam;
 //    tmCam.start();
 
-    Mat img, maskedImg;
+    UMat img, maskedImg;
 
     capture >> img;
     cvtColor(img, img, COLOR_BGR2RGB);
@@ -95,7 +97,7 @@ Mat cameraThread(int &camNo, VideoCapture &capture)
 void mainThread(vector<VideoCapture> &captures)
 {
     vector<QFuture<Mat>> futures(4);
-    vector<Mat> topViewImgs(4);
+    vector<UMat> topViewImgs(4);
 
 //    int time = 0;
 

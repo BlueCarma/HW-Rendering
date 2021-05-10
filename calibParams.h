@@ -12,10 +12,10 @@ using namespace std;
 QT_END_NAMESPACE
 
 
-extern vector<Mat> map1;
-extern vector<Mat> map2;
-extern vector<Mat> topViewH;
-extern vector<Mat> mergeH;
+extern vector<UMat> map1;
+extern vector<UMat> map2;
+extern vector<UMat> topViewH;
+extern vector<UMat> mergeH;
 
 
 #endif // CALIBPARAMS_H

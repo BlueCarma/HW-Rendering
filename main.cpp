@@ -16,13 +16,13 @@
 #include "mergeParams.h"
 
 
-vector<Mat> map1;
-vector<Mat> map2;
-vector<Mat> topViewH;
-vector<Mat> mergeH;
-vector<Mat> stitchH;
-vector<Mat> mask;
-Mat rotateH;
+vector<UMat> map1;
+vector<UMat> map2;
+vector<UMat> topViewH;
+vector<UMat> mergeH;
+vector<UMat> stitchH;
+vector<UMat> mask;
+UMat rotateH;
 
 
 
@@ -51,11 +51,11 @@ int main(int argc, char *argv[])
 
 
     // -------------------- READ FROM PARAMETERS FILE --------------------
-    Mat map1Cam1, map1Cam2, map1Cam3, map1Cam4;
-    Mat map2Cam1, map2Cam2, map2Cam3, map2Cam4;
-    Mat topViewHCam1, topViewHCam2, topViewHCam3, topViewHCam4;
-    Mat mask1, mask2, mask3, mask4;
-    Mat stitchH1, stitchH2, stitchH3, stitchH4;
+    UMat map1Cam1, map1Cam2, map1Cam3, map1Cam4;
+    UMat map2Cam1, map2Cam2, map2Cam3, map2Cam4;
+    UMat topViewHCam1, topViewHCam2, topViewHCam3, topViewHCam4;
+    UMat mask1, mask2, mask3, mask4;
+    UMat stitchH1, stitchH2, stitchH3, stitchH4;
 
     FileStorage paramsCam1("/opt/warpParams/warpParamsCam1.xml", FileStorage::READ);
     paramsCam1["map1"] >> map1Cam1;

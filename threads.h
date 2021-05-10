@@ -20,10 +20,10 @@ using namespace cv;
 using namespace std;
 QT_END_NAMESPACE
 
-    void mergeThread(vector<Mat> &imgs);
-    Mat cameraThread(int &camNo, VideoCapture &capture);
+    void mergeThread(vector<UMat> &imgs);
+    UMat cameraThread(int &camNo, VideoCapture &capture);
     void mainThread(vector<VideoCapture> &captures);
 
-    void humanDetectionHOG(Mat& img);
+    void humanDetectionHOG(UMat& img);
 
 #endif // THREADS_H

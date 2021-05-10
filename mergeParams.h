@@ -12,9 +12,9 @@ using namespace std;
 QT_END_NAMESPACE
 
 
-extern vector<Mat> mask;
-extern vector<Mat> stitchH;
-extern Mat rotateH;
+extern vector<UMat> mask;
+extern vector<UMat> stitchH;
+extern UMat rotateH;
 
 
 #endif // MERGEPARAMS_H

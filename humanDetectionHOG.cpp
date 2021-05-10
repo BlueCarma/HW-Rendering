@@ -3,7 +3,7 @@
 #include "threads.h"
 #include <string>
 
-void humanDetectionHOG(Mat &img)
+void humanDetectionHOG(UMat &img)
 {
     HOGDescriptor hog;
     hog.setSVMDetector(HOGDescriptor::getDefaultPeopleDetector());
@@ -35,7 +35,7 @@ void humanDetectionHOG(Mat &img)
 
 //        Mat redImg(img.rows, img.cols, CV_8UC3, Scalar(0,0,255));
 
-        addWeighted(img, 0.9, Mat(img.rows, img.cols, CV_8UC3, Scalar(255, 0, 0)), 0.3, 0, img, CV_8UC3);
+        addWeighted(img, 0.9, UMat(img.rows, img.cols, CV_8UC3, Scalar(255, 0, 0)), 0.3, 0, img, CV_8UC3);
 
     }
 
