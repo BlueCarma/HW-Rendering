@@ -14,4 +14,12 @@ Window {
         width: 800
         height: 480
     }
+
+    Image {
+        source: "qrc:/tractor-2.0.png"
+        height: 200
+        width: 180
+        rotation: 90
+        anchors.centerIn: parent
+    }
 }

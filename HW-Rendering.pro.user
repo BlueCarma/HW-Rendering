@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.14.0, 2021-04-19T13:13:32. -->
+<!-- Written by QtCreator 4.14.0, 2021-04-30T11:14:45. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -245,10 +245,10 @@
        <value type="QString"></value>
       </valuelist>
       <valuelist type="QVariantList" key="RemoteLinux.LastDeployedLocalTimes">
-       <value type="QDateTime">2021-04-19T12:56:34.607</value>
+       <value type="QDateTime">2021-04-30T11:14:00.182</value>
       </valuelist>
       <valuelist type="QVariantList" key="RemoteLinux.LastDeployedRemoteTimes">
-       <value type="QDateTime">2021-04-19T12:58:18.000</value>
+       <value type="QDateTime">2021-04-30T11:15:53.000</value>
       </valuelist>
      </valuemap>
      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">3</value>
@@ -321,8 +321,12 @@
      <value type="int">14</value>
     </valuelist>
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
-    <value type="int" key="PE.EnvironmentAspect.Base">1</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">0</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes">
+     <value type="QString">#QT_QPA_EGLFS_INTEGRATION=eglfs_viv</value>
+     <value type="QString">#QT_QPA_EGLFS_FORCE888=1</value>
+     <value type="QString">#QT_QPA_EGLFS_FORCEVSYNC=0</value>
+    </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">HW-Rendering (on CCpilot device)</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">RemoteLinuxRunConfiguration:/home/ccs/qt/myProjects/HW-Rendering/HW-Rendering.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/home/ccs/qt/myProjects/HW-Rendering/HW-Rendering.pro</value>

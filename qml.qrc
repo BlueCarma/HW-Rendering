@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>landscape.png</file>
+        <file>tractor-2.0.png</file>
     </qresource>
 </RCC>

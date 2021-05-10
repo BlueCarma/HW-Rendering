@@ -2,6 +2,8 @@
 #include <QFuture>
 #include <QtCore>
 #include <QtConcurrent/QtConcurrent>
+#include <QPainter>
+#include <qpainter.h>
 
 #include "threads.h"
 #include "imagepainter.h"
@@ -40,7 +42,10 @@ void mergeThread(vector<Mat> &imgs)
         painter->setImage(finalImg);
     }
 //    tmMerge.stop();
-//    cout << "Merge thread time: " << tmMerge.getTimeSec() << endl;
+//    cout << "" << tmMerge.getTimeSec() << endl;
+
+//    cvtColor(birdsEyeView, birdsEyeView, COLOR_BGR2RGB);
+//    imwrite("/opt/images/birdsEyeViewHumanDetected2Cams.png", birdsEyeView);
 }
 
 
@@ -53,11 +58,12 @@ Mat cameraThread(int &camNo, VideoCapture &capture)
 
     Mat img, maskedImg;
 
-    // Humna detection using HOG
-//    humanDetectionHOG(img);
-
     capture >> img;
     cvtColor(img, img, COLOR_BGR2RGB);
+
+    // Human detection using HOG
+    if(camNo == 1)
+        humanDetectionHOG(img);
 
     // Dewarp(anti-fish) images
     remap(img, img, map1[camNo], map2[camNo], INTER_LINEAR, BORDER_CONSTANT);
@@ -65,14 +71,20 @@ Mat cameraThread(int &camNo, VideoCapture &capture)
     // Change perspective to top view
     warpPerspective(img, img, topViewH[camNo], img.size(), WARP_INVERSE_MAP);
 
+//    if(camNo == 0)
+//        copyMakeBorder(img, img, 0, 1000, 500, 500, BORDER_CONSTANT);
+//    else
+//        copyMakeBorder(img, img, 0, 1000, 0, 1000, BORDER_CONSTANT);
+
     copyMakeBorder(img, img, 0, 500, 0, 0, BORDER_CONSTANT);
+
     warpPerspective(img, img, stitchH[camNo], img.size());
 
     // Add mask
     bitwise_and(img, img, maskedImg, mask[camNo]);
 
 //    tmCam.stop();
-//    cout << "Time cameraThread no. " << to_string(camNo) << " : " << tmCam.getTimeSec() << endl;
+//    cout << "" << tmCam.getTimeSec() << endl;
 
     return maskedImg;
 }
@@ -84,6 +96,8 @@ void mainThread(vector<VideoCapture> &captures)
 {
     vector<QFuture<Mat>> futures(4);
     vector<Mat> topViewImgs(4);
+
+//    int time = 0;
 
     // Loop forever
     while(1){
@@ -113,5 +127,6 @@ void mainThread(vector<VideoCapture> &captures)
 
 //        tm.stop();
 //        cout << "Total time: " << tm.getTimeSec() << endl;
+//        time ++;
     }
 }
