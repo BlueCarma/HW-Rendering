@@ -10,6 +10,11 @@
 #include "calibParams.h"
 #include "mergeParams.h"
 
+#include "opencv2/objdetect.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/videoio.hpp"
+
 
 
 
@@ -18,8 +23,9 @@ void mergeThread(vector<Mat> &imgs)
 //    TickMeter tmMerge;
 //    tmMerge.start();
 
-    Mat img1 = imgs[0], img2 = imgs[1], img3 = imgs[2], img4 = imgs[3];
-    Mat birdsEyeView;
+    UMat img1 = imgs[0].getUMat(ACCESS_RW), img2 = imgs[1].getUMat(ACCESS_RW), img3 = imgs[2].getUMat(ACCESS_RW), img4 = imgs[3].getUMat(ACCESS_RW);
+//    UMat img1 = imgs[0], img2 = imgs[1], img3 = imgs[2], img4 = imgs[3];
+    UMat birdsEyeView;
 
     // Stitch images(x4)
     add(img1, img2, birdsEyeView);
@@ -33,8 +39,10 @@ void mergeThread(vector<Mat> &imgs)
     // Rotate image to fit the screen
     rotate(birdsEyeView, birdsEyeView, cv::ROTATE_90_CLOCKWISE);
 
+    Mat mat = birdsEyeView.getMat(ACCESS_RW);
+
     // Convert Mat to QImage
-    QImage finalImg(birdsEyeView.data, birdsEyeView.cols, birdsEyeView.rows, birdsEyeView.step, QImage::Format_RGB888);
+    QImage finalImg(mat.data, mat.cols, mat.rows, mat.step, QImage::Format_RGB888);
 
     // Display stitched image
     ImagePainter *painter = ImagePainter::getSingleton();
@@ -44,8 +52,8 @@ void mergeThread(vector<Mat> &imgs)
 //    tmMerge.stop();
 //    cout << "" << tmMerge.getTimeSec() << endl;
 
-//    cvtColor(birdsEyeView, birdsEyeView, COLOR_BGR2RGB);
-//    imwrite("/opt/images/birdsEyeViewHumanDetected2Cams.png", birdsEyeView);
+    cvtColor(birdsEyeView, birdsEyeView, COLOR_BGR2RGB);
+    imwrite("/opt/birdsEyeViewHumanDetected2Cams.png", birdsEyeView);
 }
 
 
@@ -62,8 +70,27 @@ Mat cameraThread(int &camNo, VideoCapture &capture)
     cvtColor(img, img, COLOR_BGR2RGB);
 
     // Human detection using HOG
-    if(camNo == 1)
+    if(camNo == 0 || camNo == 1)
         humanDetectionHOG(img);
+
+
+
+
+//        CascadeClassifier fd("/opt/opencv/share/opencv4/haarcascades/haarcascade_lowerbody.xml");
+//        UMat uimgGray;
+//        UMat uimg = img.getUMat(ACCESS_RW);
+//        vector<Rect> human;
+
+//            cvtColor(uimg, uimgGray, COLOR_RGB2GRAY);
+//            equalizeHist(uimgGray, uimgGray);
+//            fd.detectMultiScale(uimgGray, human);
+
+//            if(human.size() > 0)
+//                addWeighted(img, 0.9, Mat(img.rows, img.cols, CV_8UC3, Scalar(255, 0, 0)), 0.3, 0, img, CV_8UC3);
+//    }
+
+
+
 
 //    qDebug() << img.size().height << img.size().width;
     // Dewarp(anti-fish) images
@@ -85,6 +112,8 @@ Mat cameraThread(int &camNo, VideoCapture &capture)
 
     // Add mask
     bitwise_and(img, img, maskedImg, mask[camNo]);
+
+
 
 //    tmCam.stop();
 //    cout << "" << tmCam.getTimeSec() << endl;

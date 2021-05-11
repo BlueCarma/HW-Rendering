@@ -10,9 +10,8 @@ Window {
 
 
     ImagePainter {
-        anchors.centerIn: parent
-        width: 800
-        height: 480
+        anchors.fill: parent
+
     }
 
     Image {
