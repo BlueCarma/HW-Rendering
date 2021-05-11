@@ -65,8 +65,11 @@ Mat cameraThread(int &camNo, VideoCapture &capture)
     if(camNo == 1)
         humanDetectionHOG(img);
 
+//    qDebug() << img.size().height << img.size().width;
     // Dewarp(anti-fish) images
     remap(img, img, map1[camNo], map2[camNo], INTER_LINEAR, BORDER_CONSTANT);
+
+//    qDebug() << "After remap";
 
     // Change perspective to top view
     warpPerspective(img, img, topViewH[camNo], img.size(), WARP_INVERSE_MAP);
@@ -102,8 +105,8 @@ void mainThread(vector<VideoCapture> &captures)
     // Loop forever
     while(1){
 
-//        TickMeter tm;
-//        tm.start();
+        TickMeter tm;
+        tm.start();
 
         // ------------------ RUN CAMERA THREADS ------------------
         for(int i = 0; i <= 3; i++){
@@ -125,8 +128,8 @@ void mainThread(vector<VideoCapture> &captures)
         futureMerge.waitForFinished();
         // --------------------------------------------------------
 
-//        tm.stop();
-//        cout << "Total time: " << tm.getTimeSec() << endl;
+        tm.stop();
+        cout << "Total time: " << tm.getTimeSec() << endl;
 //        time ++;
     }
 }

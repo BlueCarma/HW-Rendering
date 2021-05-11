@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     map2.push_back(map2Cam4);
     topViewH.push_back(topViewHCam4);
 
-    FileStorage stitchParams("/opt/stitchParams/stitchParams.xml", FileStorage::READ);
+    FileStorage stitchParams("/opt//stitchParams.xml", FileStorage::READ);
     stitchParams["stitchH1"] >> stitchH1;
     stitchParams["stitchH2"] >> stitchH2;
     stitchParams["stitchH3"] >> stitchH3;
@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
     for(int i = 0; i <= 3; i++){
         // Create pipeline for each cam
         int port = 62464 + i;
-        string pipeline = "udpsrc port=" + to_string(port) + " ! application/x-rtp,payload=26,encoding-name=JPEG,media=video ! rtpjpegdepay ! jpegparse ! jpegdec ! videoconvert ! appsink ";
+        string pipeline = "udpsrc port=" + to_string(port) + " ! application/x-rtp,payload=26,encoding-name=JPEG,media=video ! rtpjpegdepay ! jpegparse ! jpegdec ! queue ! videoconvert ! appsink ";
         VideoCapture cap;
         cap.open(pipeline, CAP_ANY);
 
