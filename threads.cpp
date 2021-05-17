@@ -70,8 +70,8 @@ Mat cameraThread(int &camNo, VideoCapture &capture)
     cvtColor(img, img, COLOR_BGR2RGB);
 
     // Human detection using HOG
-    if(camNo == 0 || camNo == 1)
-        humanDetectionHOG(img);
+//    if(camNo == 0) // || camNo == 1)
+//        humanDetectionHOG(img);
 
 
 
