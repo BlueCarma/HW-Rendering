@@ -41,6 +41,7 @@ void mergeThread(vector<Mat> &imgs)
     if(painter != nullptr){
         painter->setImage(finalImg);
     }
+
 //    tmMerge.stop();
 //    cout << "" << tmMerge.getTimeSec() << endl;
 
@@ -62,7 +63,7 @@ Mat cameraThread(int &camNo, VideoCapture &capture)
     cvtColor(img, img, COLOR_BGR2RGB);
 
     // Human detection using HOG
-    if(camNo == 1)
+    if(camNo == 0)
         humanDetectionHOG(img);
 
 //    qDebug() << img.size().height << img.size().width;
@@ -73,11 +74,6 @@ Mat cameraThread(int &camNo, VideoCapture &capture)
 
     // Change perspective to top view
     warpPerspective(img, img, topViewH[camNo], img.size(), WARP_INVERSE_MAP);
-
-//    if(camNo == 0)
-//        copyMakeBorder(img, img, 0, 1000, 500, 500, BORDER_CONSTANT);
-//    else
-//        copyMakeBorder(img, img, 0, 1000, 0, 1000, BORDER_CONSTANT);
 
     copyMakeBorder(img, img, 0, 500, 0, 0, BORDER_CONSTANT);
 
@@ -100,13 +96,13 @@ void mainThread(vector<VideoCapture> &captures)
     vector<QFuture<Mat>> futures(4);
     vector<Mat> topViewImgs(4);
 
-//    int time = 0;
+    int time = 0;
 
     // Loop forever
-    while(1){
+    while(time < 10){
 
-        TickMeter tm;
-        tm.start();
+//        TickMeter tm;
+//        tm.start();
 
         // ------------------ RUN CAMERA THREADS ------------------
         for(int i = 0; i <= 3; i++){
@@ -128,8 +124,8 @@ void mainThread(vector<VideoCapture> &captures)
         futureMerge.waitForFinished();
         // --------------------------------------------------------
 
-        tm.stop();
-        cout << "Total time: " << tm.getTimeSec() << endl;
-//        time ++;
+//        tm.stop();
+//        cout << "" << tm.getTimeSec() << endl;
+        time ++;
     }
 }
