@@ -7,8 +7,10 @@
 
 3. Configure IP addresses and port numbers.
 
-4. The program can be run with our without human detection applied on one or more cameras.
+4. Include files generated from the calibration program.
 
-5. The program can be run with Mat or UMat in the mergeThread.
+5. The program can be run with our without human detection applied on one or more cameras.
 
-6. Build and deploy.
+6. The program can be run with Mat or UMat in the mergeThread.
+
+7. Build and deploy.
