@@ -1,11 +1,6 @@
 # Bird's-eye view vision-system for heavy vehicles with integrated human-detection
 
-1. Setup:
-  4 IP cameras
-  Switch
-  Router
-  Computer(V700 or X900)
-  Laptop
+1. Setup: 4 IP cameras, switch, router, computer(V700 or X900) and laptop.
 
 2. Run camera calibration program before initialising this program.
    Link: 
